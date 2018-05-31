@@ -1,6 +1,7 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="ehcache.xsd">
 
+    <diskStore path="java.io.tmpdir/ehcache" />
     <!-- eternal：true表示对象永不过期，此时会忽略timeToIdleSeconds和 timeToLiveSeconds属性，默认为false -->
     <!-- maxEntriesLocalHeap：堆内存中最大缓存对象数，0没有限制 -->
 
