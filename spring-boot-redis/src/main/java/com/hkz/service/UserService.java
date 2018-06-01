@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 /**
  * Created by huangkz on 2018/5/21.
  */
-@Service
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
 
-    public User findUser(Integer id) {
-        User user  = userRepository.findById(id);
-        return user;
-    }
+public interface UserService {
+
+    User findUserById(Integer id);
+
+    User addUser(User user);
+
+    void deleteUser(long id);
+
 }

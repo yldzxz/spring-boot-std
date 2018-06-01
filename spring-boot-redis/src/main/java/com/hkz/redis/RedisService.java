@@ -13,11 +13,13 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by huangkz on 2018/5/18.
+ *
+ * redis
  */
 @Repository
 public class RedisService {
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
     public void add(String key, User user, Long time){
         Gson gson = new Gson();
