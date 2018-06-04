@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @RequestMapping("delete")
-    public boolean select(long id){
+    public boolean delete(int id){
         userService.deleteUser(id);
         return true;
     }

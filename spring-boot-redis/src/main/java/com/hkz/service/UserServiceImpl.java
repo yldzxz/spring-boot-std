@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
 
-    //@Cacheable(value = "user",key = "#user.id")
+    @Cacheable(value = "user",key = "#id")
     public User findUserById(Integer id) {
         System.out.println("调用方法，不使用缓存");
         return userRepository.findById(id);
@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    @CacheEvict(value = "user")
-    public void deleteUser(long id) {
+    @CacheEvict(value = "user",key="#id")
+    public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
 
