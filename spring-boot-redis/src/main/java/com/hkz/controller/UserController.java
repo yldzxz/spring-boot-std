@@ -31,9 +31,9 @@ public class UserController {
     }
 
     @RequestMapping("delete")
-    public boolean delete(int id){
-        userService.deleteUser(id);
-        return true;
+    public int  delete(int id){
+
+        return userService.deleteUser(id);
     }
 
 }
