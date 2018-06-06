@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+</head>
+<body>
+
+<h2>用户列表</h2>
+<div ><a href="add">增加用户</a></div>
+<div>
+    <ul>
+        <li  th:each="user:${users}">
+            <span th:text="${user.id}">-</span>
+            <span th:text="${user.username}">-</span>
+            <span><a th:href="@{'/user/edit?id='+${user.id}}" >edit</a></span>
+            <span><a th:href="@{'delete?id='+${user.id}}">delete</a></span>
+        </li>
+    </ul>
+</div>
+<h2><a href="/index">返回</a></h2>
+</body>
+</html>
