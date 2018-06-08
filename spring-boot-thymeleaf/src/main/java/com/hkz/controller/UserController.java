@@ -1,15 +1,12 @@
 package com.hkz.controller;
 
-import com.hkz.dao.UserRepository;
 import com.hkz.domain.User;
+import com.hkz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,34 +18,51 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @RequestMapping("/")
-    public User selectUser(){
-        User user = userRepository.findByUsername("hkz");
-        return  user;
+    public String selectUser(){
+        return  "redirect:user/list";
     }
 
 
     @RequestMapping("list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView("user/listUser");
-        List<User> list = userRepository.findAll();
+        List<User> list = userService.findAll();
         modelAndView.addObject("users",list);
         return modelAndView;
     }
 
-    @RequestMapping("add")
-    public String add(){
+    @RequestMapping("toAdd")
+    public String toAdd(){
         return "user/addUser";
     }
 
-    @RequestMapping("addUser")
-    public ModelAndView addUser(User user){
-        ModelAndView modelAndView = new ModelAndView("user/listUser");
-        userRepository.save(user);
-        List<User> list = userRepository.findAll();
-        modelAndView.addObject("users",list);
-        return modelAndView;
+    @RequestMapping("add")
+    public String add(User user){
+        userService.save(user);
+        return "user/list";
     }
+
+    @RequestMapping("toEdit")
+    public String toEdit(Model model,Long id){
+        User user = userService.findUserById(id);
+        model.addAttribute("user",user);
+        return "user/editUser";
+    }
+
+    @RequestMapping("edit")
+    public String edit(User user){
+        userService.save(user);
+        return "redirect:/user/list";
+    }
+
+    @RequestMapping("delete")
+    public String delete(int id){
+        userService.deleteById(id);
+        return "redirect:/user/list";
+    }
+
+
 }
