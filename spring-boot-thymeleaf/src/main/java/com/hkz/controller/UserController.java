@@ -35,14 +35,14 @@ public class UserController {
     }
 
     @RequestMapping("toAdd")
-    public String toAdd(){
+    public String toAdd(User user){
         return "user/addUser";
     }
 
     @RequestMapping("add")
     public String add(User user){
         userService.save(user);
-        return "user/list";
+        return "redirect:/user/list";
     }
 
     @RequestMapping("toEdit")

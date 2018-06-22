@@ -8,10 +8,12 @@
 <body>
 <h2>增加用户</h2>
 <a href="/user/list">返回</a>
-<form action="user/add"  th:object="${user}"  method="post">
-    username: <input type="text"  name="userName"  id="userName" th:value="*{userName}" placeholder="userName"/>
+<form action="/user/add"  th:object="${user}"  method="post">
+    username:&nbsp<input type="text"  name="userName"  th:field="*{username}"  placeholder="userName"/>
     <br/>
-    password:<input type="password"  name="password"  id="password" th:value="*{password}" placeholder="password"/>
+    <br/>
+    password:&nbsp<input type="password"  name="password"  th:field="*{password}"  placeholder="password"/>
+    <br/>
     <br/>
     <input type="submit" value="Submit"/>
 </form>
